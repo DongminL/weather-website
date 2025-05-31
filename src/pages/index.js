@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment } from 'react'
 import { useRouter } from "next/router";
 
 export default function Main() {
@@ -6,31 +6,30 @@ export default function Main() {
     const cities = ["Seoul", "Tokyo", "Paris", "London"];
 
     return (
-        <main>
-            <div>
-                <header>
-                    <h1>
-                        Welcome to <span>Weather App!</span>
-                    </h1>
-                    <p>
-                        Choose a city from the list below to check the weather.
-                    </p>
-                </header>
+        <Fragment>
+            <header>
+                <h1>
+                    <p>Welcome to</p>
+                    <p>Weather App!</p>
+                </h1>
+            </header>
 
-                <nav>
-                    {cities.map((city) => (
-                        <button
-                            onClick={() => router.push(`/${city}`)}
-                        >
-                            {city}
-                        </button>
-                    ))}
-                </nav>
+            <nav>
+                <p>
+                    Choose a city from the list below to check the weather.
+                </p>
+                {cities.map((city) => (
+                    <button
+                        onClick={() => router.push(`/${city}`)}
+                    >
+                        {city}
+                    </button>
+                ))}
+            </nav>
 
-                <figure>
-                    <img src="/earth.svg"/>
-                </figure>
-            </div>
-        </main>
+            <figure>
+                <img src="/earth.svg"/>
+            </figure>
+        </Fragment>
     );
 }
