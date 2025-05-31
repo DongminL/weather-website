@@ -30,13 +30,13 @@ export default function CityWeatherDetail() {
                     <p>5-day Forecast</p>
                 </div>
 
-                {[23, 24, 25, 26, 27].map((day) => (
-                    <div>
+                {[23, 24, 25, 26, 27].map((day, index) => (
+                    <div key={index}>
                         <details>
                             <summary>May {day}</summary>
                             <ul>
-                                {dummyInfo.map((info) => (
-                                    <li>
+                                {dummyInfo.map((info, index) => (
+                                    <li key={index}>
                                         <div>
                                             <img src={`https://openweathermap.org/img/wn/${info.icon}@2x.png`} />
                                             <span>{info.time}</span>

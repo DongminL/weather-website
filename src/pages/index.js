@@ -13,13 +13,13 @@ export default function Main() {
                     <p>Weather App!</p>
                 </h1>
             </header>
-
             <nav>
                 <p>
                     Choose a city from the list below to check the weather.
                 </p>
                 {cities.map((city) => (
                     <button
+                        key={city}
                         onClick={() => router.push(`/${city}`)}
                     >
                         {city}
