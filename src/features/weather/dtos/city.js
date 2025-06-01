@@ -21,7 +21,11 @@ export const Cities = Object.freeze({
 
     fromValue(value) {
         const key = String(value).toUpperCase();
-        return this[key] instanceof Coordinate ? this[key] : new Error("변환할 수 없는 도시입니다.");
+
+        if (!this[key] instanceof Coordinate) {
+            throw new Error("존재하지 않는 도시입니다.");
+        }
+        return this[key];
     },
 
     values() {
