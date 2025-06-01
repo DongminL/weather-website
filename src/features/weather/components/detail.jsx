@@ -15,7 +15,6 @@ export default function CityWeatherDetail() {
         }
         
         const fetchWeather = async () => {
-            console.info(cityName)
             const city = Cities.fromValue(cityName);
 
             const weather = await new WeatherProvider().getFiveDaysForecastByCity(city);
@@ -49,11 +48,11 @@ export default function CityWeatherDetail() {
                                 {hourlyWeather?.hourlyWeatherList?.map((data, index) => (
                                     <li key={index}>
                                         <div>
-                                            <img src={`https://openweathermap.org/img/wn/${data.info.icon}@2x.png`} />
+                                            <img src={`https://openweathermap.org/img/wn/${data.weather.iconCode}@2x.png`} />
                                             <span>{data.utcTimestamp}</span>
                                         </div>
                                         <div>
-                                            <p>{data.info.description}</p>
+                                            <p>{data.weather.description}</p>
                                             <p>{data.weather.minTemp} / {data.weather.maxTemp}</p>
                                         </div>
                                     </li>

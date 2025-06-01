@@ -1,19 +1,13 @@
-class Info {
-    constructor(data) {
-        this.id = data.id;
-        this.description = data.description;
-        this.icon = data.icon;
-    }
-}
-
 class Weather {
     constructor(data) {
-        this.temp = data.temp;
-        this.feelsLike = data.feels_like;
-        this.minTemp = data.temp_min;
-        this.maxTemp = data.temp_max;
-        this.pressure = data.pressure;
-        this.humidity = data.humidity;
+        this.temp = data.main.temp;
+        this.feelsLike = data.main.feels_like;
+        this.minTemp = data.main.temp_min;
+        this.maxTemp = data.main.temp_max;
+        this.pressure = data.main.pressure;
+        this.humidity = data.main.humidity;
+        this.iconCode = data.weather[0].icon;
+        this.description = data.weather[0].description;
     }
 }
 
@@ -38,19 +32,18 @@ class City {
     }
 }
 
-export class HourlyWeatherResponse {
+class HourlyWeatherResponse {
     constructor(data) {
         this.utcTimestamp = data.dt;
-        this.info = new Info(data.weather[0]);
-        this.weather = new Weather(data.main);
+        this.weather = new Weather(data);
+        this.wind = new Wind(data.wind)
     }
 }
 
 export class CurrentWeatherResponse {
     constructor(data) {
         this.utcTimestamp = data.dt;
-        this.info = new Info(data.weather[0]);
-        this.weather = new Weather(data.main);
+        this.weather = new Weather(data);
         this.wind = new Wind(data.wind);
         this.location = new Location(data.sys);
     }
@@ -58,7 +51,6 @@ export class CurrentWeatherResponse {
 
 export class ForecastResponse {
     constructor(data) {
-        console.info(data);
         this.hourlyWeatherList = this.toHourlyWeahterList(data.list);
         this.city = new City(data.city);
     }
