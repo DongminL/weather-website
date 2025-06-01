@@ -1,29 +1,44 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { Cities } from "../dtos/city";
 import CurrentCityWeather from "./current";
+import WeatherProvider from "../services/weatherProvider";
 
 export default function CityWeatherDetail() {
     const router = useRouter();
-    const { city } = router.query;
+    const cityName = router.query.city;
+    const [hourlyWeather, setHourlyWeather] = useState(null);
 
-    const dummyInfo = Array.from({ length: 7 }, (_, i) => ({
-        time : `${(i * 3).toString().padStart(2, '0')}:00`,
-        minTemp : "297.32°C",
-        maxTemp : "300.32°C",
-        description : "clear sky",
-        icon : "01d"
-    }));
+    useEffect(() => {
+        if (!cityName) {
+            return;
+        }
+        
+        const fetchWeather = async () => {
+            console.info(cityName)
+            const city = Cities.fromValue(cityName);
+
+            try {
+                const weather = await new WeatherProvider().getFiveDaysForecastByCity(city);
+                setHourlyWeather(weather);
+            } catch (err) {
+                console.error("시간 당 날씨 정보를 가져오는 중 오류 발생:", err);
+            }
+        };
+
+        fetchWeather();
+    }, [router.isReady, router.query.city]);
 
     return (
         <Fragment>
             <header>
                 <img src="/earth.svg" />
                 <h1>
-                    Weather Information for {city}
+                    Weather Information for {cityName}
                 </h1>
             </header>
 
-            <CurrentCityWeather cityName={city} />
+            <CurrentCityWeather cityName={cityName} population={hourlyWeather?.city?.population} />
 
             <section>
                 <div>
@@ -35,15 +50,15 @@ export default function CityWeatherDetail() {
                         <details>
                             <summary>May {day}</summary>
                             <ul>
-                                {dummyInfo.map((info, index) => (
+                                {hourlyWeather?.hourlyWeatherList?.map((data, index) => (
                                     <li key={index}>
                                         <div>
-                                            <img src={`https://openweathermap.org/img/wn/${info.icon}@2x.png`} />
-                                            <span>{info.time}</span>
+                                            <img src={`https://openweathermap.org/img/wn/${data.info.icon}@2x.png`} />
+                                            <span>{data.utcTimestamp}</span>
                                         </div>
                                         <div>
-                                            <p>{info.description}</p>
-                                            <p>{info.minTemp} / {info.maxTemp}</p>
+                                            <p>{data.info.description}</p>
+                                            <p>{data.weather.minTemp} / {data.weather.maxTemp}</p>
                                         </div>
                                     </li>
                                 ))}
