@@ -9,12 +9,8 @@ export default function CurrentCityWeather({ cityName, population }) {
         const fetchWeather = async () => {
             const city = Cities.fromValue(cityName);
 
-            try {
-                const weather = await new WeatherProvider().getCurrentWeatherByCity(city);
-                setWeatherData(weather);
-            } catch (err) {
-                console.error("현재 날씨 정보를 가져오는 중 오류 발생:", err);
-            }
+            const weather = await new WeatherProvider().getCurrentWeatherByCity(city);
+            setWeatherData(weather);
         };
 
         fetchWeather();

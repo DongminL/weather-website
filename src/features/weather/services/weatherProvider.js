@@ -8,14 +8,16 @@ export default class WeatherProvider {
     }
 
     async getCurrentWeatherByCity(city) {
-        const response = await fetch(`${this.currentWeatherUrl}?appid=${this.apiKey}&units=metric&lat=${city.lat}&lon=${city.lon}`);
-        const data = await response.json();
-        return new CurrentWeatherResponse(data);
+        return fetch(`${this.currentWeatherUrl}?appid=${this.apiKey}&units=metric&lat=${city.lat}&lon=${city.lon}`)
+            .then(response => response.json())
+            .then(data => new CurrentWeatherResponse(data))
+            .catch(error => console.error("현재 날씨 정보를 가져오는 중 오류 발생:", error));
     }
 
     async getFiveDaysForecastByCity(city) {
-        const response = await fetch(`${this.forecastUrl}?appid=${this.apiKey}&units=metric&lat=${city.lat}&lon=${city.lon}`);
-        const data = await response.json();
-        return new ForecastResponse(data);
+        return fetch(`${this.forecastUrl}?appid=${this.apiKey}&units=metric&lat=${city.lat}&lon=${city.lon}`)
+            .then(response => response.json())
+            .then(data => new ForecastResponse(data))
+            .catch(error => console.error("시간 당 날씨 정보를 가져오는 중 오류 발생:", error));
     }
 }

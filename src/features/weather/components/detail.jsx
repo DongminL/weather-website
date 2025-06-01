@@ -18,12 +18,8 @@ export default function CityWeatherDetail() {
             console.info(cityName)
             const city = Cities.fromValue(cityName);
 
-            try {
-                const weather = await new WeatherProvider().getFiveDaysForecastByCity(city);
-                setHourlyWeather(weather);
-            } catch (err) {
-                console.error("시간 당 날씨 정보를 가져오는 중 오류 발생:", err);
-            }
+            const weather = await new WeatherProvider().getFiveDaysForecastByCity(city);
+            setHourlyWeather(weather);
         };
 
         fetchWeather();
