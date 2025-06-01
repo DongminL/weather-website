@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { WeatherProvider } from "../services/weatherProvider";
+import WeatherProvider from "../services/weatherProvider";
 import { Cities } from "../dtos/city";
 
-export default function CurrentCityWeather({ cityName }) {
+export default function CurrentCityWeather({ cityName, population }) {
     const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export default function CurrentCityWeather({ cityName }) {
                 const weather = await new WeatherProvider().getCurrentWeatherByCity(city);
                 setWeatherData(weather);
             } catch (err) {
-                console.error("날씨 정보를 가져오는 중 오류 발생:", err);
+                console.error("현재 날씨 정보를 가져오는 중 오류 발생:", err);
             }
         };
 
@@ -31,7 +31,7 @@ export default function CurrentCityWeather({ cityName }) {
                         {cityName}, {weatherData.location.country}
                     </h2>
                     <p>
-                        (인구수: 10343912)
+                        (인구수: {population})
                     </p>
                 </div>
                 <div>
