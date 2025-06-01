@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { useRouter } from "next/router";
 
 export default function Main() {
@@ -6,7 +5,7 @@ export default function Main() {
     const cities = ["Seoul", "Tokyo", "Paris", "London"];
 
     return (
-        <Fragment>
+        <>
             <header>
                 <h1>
                     <p>Welcome to</p>
@@ -30,6 +29,6 @@ export default function Main() {
             <figure>
                 <img src="/earth.svg"/>
             </figure>
-        </Fragment>
+        </>
     );
 }

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Cities } from "../dtos/city";
 import CurrentCityWeather from "./current";
@@ -26,7 +26,7 @@ export default function CityWeatherDetail() {
     }, [router.isReady, router.query.city]);
 
     return (
-        <Fragment>
+        <>
             <header>
                 <img src="/earth.svg" />
                 <h1>
@@ -63,6 +63,6 @@ export default function CityWeatherDetail() {
                     </div>
                 ))}
             </section>
-        </Fragment>
+        </>
     );
 }
