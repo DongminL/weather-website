@@ -14,7 +14,8 @@ export default class WeatherProvider {
             .catch(error => console.error("현재 날씨 정보를 가져오는 중 오류 발생:", error));
     }
 
-    async getFiveDaysForecastByCity(city) {
+    // 3시간 간격으로 5일 동안에 날씨 예보 가져오기
+    async getForecastByCity(city) {
         return fetch(`${this.forecastUrl}?appid=${this.apiKey}&units=metric&lat=${city.lat}&lon=${city.lon}`)
             .then(response => response.json())
             .then(data => new ForecastResponse(data))
