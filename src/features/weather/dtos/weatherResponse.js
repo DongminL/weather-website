@@ -28,6 +28,8 @@ class Location {
 
 class City {
     constructor(data) {
+        this.name = data.name;
+        this.country = data.country;
         this.population = data.population;
     }
 }
