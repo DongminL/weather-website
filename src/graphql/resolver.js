@@ -1,5 +1,5 @@
-import WeatherService from "../services/weatherService"
-import WeatherProvider from "../services/weatherProvider"
+import WeatherService from "../features/weather/services/weatherService"
+import WeatherProvider from "../features/weather/services/weatherProvider"
 
 const weatherService = new WeatherService(new WeatherProvider());
 

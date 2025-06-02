@@ -48,6 +48,7 @@ export const typeDefs = gql`
 
     type City {
         name: String
+        country: String
         population: Int 
     }
 `;
