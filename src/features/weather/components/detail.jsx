@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Cities } from "../dtos/city";
 import CurrentCityWeather from "./current";
-import WeatherProvider from "../services/weatherProvider";
+import { useQuery } from "@apollo/client";
+import FORECAST_QUERY from "../queries/forecastQuery";
 
 export default function CityWeatherDetail() {
     const router = useRouter();
     const cityName = router.query.city;
-    const [hourlyWeather, setHourlyWeather] = useState(null);
+    
+    const { loading, error, data } = useQuery(FORECAST_QUERY, {
+        variables: { cityName },
+        context: { clientName: "local" },
+    });
 
-    useEffect(() => {
-        if (!cityName) {
-            return;
-        }
-        
-        const fetchWeather = async () => {
-            const city = Cities.fromValue(cityName);
+    if (loading) {
+        return <p>현재 날씨 데이터를 불러오는 중...</p>;
+    }
+    if (error) {
+        return <p>에러 발생: {error.message}</p>;
+    }
 
-            const weather = await new WeatherProvider().getFiveDaysForecastByCity(city);
-            setHourlyWeather(weather);
-        };
-
-        fetchWeather();
-    }, [router.isReady, router.query.city]);
+    const forecastData = data.forecast;
 
     return (
         <>
@@ -33,7 +31,7 @@ export default function CityWeatherDetail() {
                 </h1>
             </header>
 
-            <CurrentCityWeather cityName={cityName} population={hourlyWeather?.city?.population} />
+            <CurrentCityWeather cityName={cityName} />
 
             <section>
                 <div>
@@ -45,7 +43,7 @@ export default function CityWeatherDetail() {
                         <details>
                             <summary>May {day}</summary>
                             <ul>
-                                {hourlyWeather?.hourlyWeatherList?.map((data, index) => (
+                                {forecastData.hourlyWeatherList?.map((data, index) => (
                                     <li key={index}>
                                         <div>
                                             <img src={`https://openweathermap.org/img/wn/${data.weather.iconCode}@2x.png`} />
