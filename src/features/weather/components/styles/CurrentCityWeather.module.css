@@ -1,0 +1,66 @@
+.weatherBox {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    max-width: 70rem;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    border: 1px solid #DFDFDF;
+}
+
+.leftBlock {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.weatherIcon {
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+}
+
+.date {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #555555;
+    margin: 0 0 0.5rem 0;
+}
+
+.cityInfo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+}
+
+.cityName {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.population {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8B8B8B;
+}
+
+.rightBlock {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.temp {
+    font-size: 3.1rem;
+    font-weight: 700;
+}
+
+.etcWeather {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8B8B8B;
+    margin: 0.3rem 0 0 0;
+    line-height: 140%;
+}

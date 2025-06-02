@@ -8,7 +8,7 @@ export default function Main() {
     const [selectedCity, setSelectedCity] = useState(null);
 
     return (
-        <div className={styles.root}>
+        <main className={styles.root}>
             <header>
                 <h1 className={styles.title}>
                     <p className={styles.welcome}>
@@ -43,6 +43,6 @@ export default function Main() {
             <figure>
                 <img src="/images/earth.svg"/>
             </figure>
-        </div>
+        </main>
     );
 }

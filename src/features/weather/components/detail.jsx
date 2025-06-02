@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import styles from "./styles/CityWeatherDetail.module.css";
 import { useQuery } from "@apollo/client";
 import FORECAST_QUERY from "../queries/forecastQuery";
 import { timestampToDate } from "@/utils/dateUtils";
@@ -26,24 +26,40 @@ export default function CityWeatherDetail({ cityName }) {
     return (
         <>
             {fiveDays.map((date, index) => (
-                <div key={index}>
-                    <details>
-                        <summary>{date}</summary>
-                        <ul>
+                
+                <div key={index} className={styles.dateBox}>
+                    <details className={styles.detailBox}>
+                        <summary className={styles.summary}>
+                            {date}
+                            <img
+                                src="/images/toggle.svg"
+                                className={styles.toggleIcon}
+                            />
+                        </summary>
+                        <ul className={styles.hourList}>
+
                             {forecastData[date]?.map((data, index) => (
-                                <li key={index}>
-                                    <div>
-                                        <img src={`https://openweathermap.org/img/wn/${data.weather.iconCode}@2x.png`} />
-                                        <span>
+
+                                <li key={index} className={styles.hourItem}>
+                                    <div className={styles.leftBlock}>
+                                        <img 
+                                            src={`https://openweathermap.org/img/wn/${data.weather.iconCode}@2x.png`} 
+                                            className={styles.weatherIcon}
+                                        />
+                                        <span className={styles.time}>
                                             {timestampToDate(
                                                 data.utcTimestamp, 
                                                 Cities.fromValue(cityName).timezone, 
-                                                "hh:mma")}
+                                                "HH:mma")}
                                         </span>
                                     </div>
-                                    <div>
-                                        <p>{data.weather.description}</p>
-                                        <p>{data.weather.minTemp} / {data.weather.maxTemp}</p>
+                                    <div className={styles.rightBlock}>
+                                        <p className={styles.description}>
+                                            {data.weather.description}
+                                        </p>
+                                        <p className={styles.temp}>
+                                            {data.weather.minTemp} / {data.weather.maxTemp}
+                                        </p>
                                     </div>
                                 </li>
                             ))}

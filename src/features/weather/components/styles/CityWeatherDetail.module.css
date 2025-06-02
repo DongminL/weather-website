@@ -1,0 +1,77 @@
+.dateBox {
+    border-top: 1px solid #DFDFDF;
+    max-width: 70rem;
+}
+
+.detailBox {
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.summary {
+    font-size: 30px;
+    font-weight: 700;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggleIcon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+details[open] .toggleIcon {
+    transform: rotate(180deg);
+}
+
+.hourList {
+    list-style: none;
+    padding: 0 1.5rem 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.hourItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0 0.5rem;
+}
+
+.leftBlock {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.weatherIcon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.time {
+    font-weight: 700;
+    font-size: 30px;
+    color: #111;
+}
+
+.rightBlock {
+    text-align: right;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: 600;
+    color: #8B8B8B;
+}
+
+.temp {
+    font-size: 30px;
+    font-weight: 700;
+}

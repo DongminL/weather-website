@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import styles from "./styles/CurrentCityWeather.module.css";
 import { useQuery } from "@apollo/client";
 import CURRENT_WEATHER_QUERY from "../queries/currentWeatherQuery";
 import { timestampToDate } from "@/utils/dateUtils";
@@ -26,23 +26,37 @@ export default function CurrentCityWeather({ cityName }) {
     );
 
     return (
-        <section>
-            <div>
-                <img src={`https://openweathermap.org/img/wn/${weatherData.weather.iconCode}@2x.png`} />
-                <div>
-                    <p>{currentDate}</p>
-                    <h2>
-                        {cityName}, {weatherData.location.country}
-                    </h2>
-                    <p>(인구수: {cityData.population})</p>
+        <section className={styles.weatherBox}>
+                <div className={styles.leftBlock}>
+                    <img 
+                        src={`https://openweathermap.org/img/wn/${weatherData.weather.iconCode}@2x.png`} 
+                        className={styles.weatherIcon}
+                    />
+                    <div>
+                        <p className={styles.date}>
+                            {currentDate}
+                        </p>
+                        <div className={styles.cityInfo}>
+                            <p className={styles.cityName}>
+                                {cityName}, {weatherData.location.country}
+                            </p>
+                            <p className={styles.population}>
+                                (인구수: {cityData.population})
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p>{weatherData.weather.temp}°C</p>
-                    <p>
-                        Feels like {weatherData.weather.feelsLike}°C {weatherData.weather.description} 풍속 {weatherData.wind.speed}m/s 습도 {weatherData.weather.humidity}%
+                <div className={styles.rightBlock}>
+                    <p className={styles.temp}>
+                        {weatherData.weather.temp}°C
+                    </p>
+                    <p className={styles.etcWeather}>
+                        Feels like {weatherData.weather.feelsLike}°C&nbsp;
+                        {weatherData.weather.description}&nbsp;
+                        풍속 {weatherData.wind.speed}m/s&nbsp;
+                        습도 {weatherData.weather.humidity}%
                     </p>
                 </div>
-            </div>
         </section>
     );
 }

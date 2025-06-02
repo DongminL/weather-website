@@ -1,3 +1,4 @@
+import styles from "@/styles/CityWeatherPage.module.css"
 import { useRouter } from "next/router";
 import CityWeatherDetail from "../features/weather/components/detail";
 import CurrentCityWeather from "@/features/weather/components/current";
@@ -7,23 +8,25 @@ export default function CityWeatherPage() {
     const cityName = router.query.city;
 
     return (
-        <>
-            <header>
-                <img src="/images/earth.svg" />
-                <h1>
-                    Weather Information for {cityName}
-                </h1>
-            </header>
+        <main className={styles.root}>
+            <div className={styles.wrapper}>
+                <header className={styles.header}>
+                    <img src="/images/earth.svg" className={styles.earth} />
+                    <h1 className={styles.title}>
+                        Weather Information for {cityName}
+                    </h1>
+                </header>
 
-            <CurrentCityWeather cityName={cityName} />
+                <CurrentCityWeather cityName={cityName} />
 
-            <section>
-                <div>
-                    <p>5-day Forecast</p>
-                </div>
+                <section className={styles.forecastSection}>
+                    <header className={styles.forecastHeader}>
+                        <p className={styles.forecastTitle}>5-day Forecast</p>
+                    </header>
 
-                <CityWeatherDetail cityName={cityName} />
-            </section>
-        </>
+                    <CityWeatherDetail cityName={cityName} />
+                </section>
+            </div>
+        </main>
     );
 }
