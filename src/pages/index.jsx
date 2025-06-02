@@ -1,34 +1,48 @@
+import styles from "@/styles/Main.module.css";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Main() {
     const router = useRouter();
     const cities = ["Seoul", "Tokyo", "Paris", "London"];
+    const [selectedCity, setSelectedCity] = useState(null);
 
     return (
-        <>
+        <div className={styles.root}>
             <header>
-                <h1>
-                    <p>Welcome to</p>
-                    <p>Weather App!</p>
+                <h1 className={styles.title}>
+                    <p className={styles.welcome}>
+                        Welcome to
+                    </p>
+                    <p className={styles.app}>
+                        Weather App!
+                    </p>
                 </h1>
             </header>
-            <nav>
-                <p>
+
+            <nav className={styles.nav}>
+                <p className={styles.description}>
                     Choose a city from the list below to check the weather.
                 </p>
-                {cities.map((city) => (
-                    <button
-                        key={city}
-                        onClick={() => router.push(`/${city}`)}
-                    >
-                        {city}
-                    </button>
-                ))}
+                <div className={styles.cityBtns}>
+                    {cities.map((city) => (
+                        <button
+                            key={city}
+                            className={`${styles.cityBtn} ${selectedCity === city ? styles.selected : ""}`}
+                            onClick={() => {
+                                setSelectedCity(city);
+                                router.push(`/${city}`);
+                            }}
+                        >
+                            {city}
+                        </button>
+                    ))}
+                </div>
             </nav>
 
             <figure>
                 <img src="/images/earth.svg"/>
             </figure>
-        </>
+        </div>
     );
 }
