@@ -1,7 +1,7 @@
 export default class WeatherProvider {
     constructor() {
-        this.weatherApiBaseUrl = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_BASE_URL;
-        this.apiKey = process.env.NEXT_PUBLIC_OPEN_WEATHER_API_KEY;
+        this.weatherApiBaseUrl = process.env.OPEN_WEATHER_MAP_BASE_URL;
+        this.apiKey = process.env.OPEN_WEATHER_API_KEY;
     }
 
     async getCurrentWeatherByCity(city) {
