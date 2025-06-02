@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import CURRENT_WEATHER_QUERY from "../queries/currentWeatherQuery";
 
-export default function CurrentCityWeather({ cityName}) {
+export default function CurrentCityWeather({ cityName }) {
     const { loading, error, data } = useQuery(CURRENT_WEATHER_QUERY, {
         variables: { cityName },
         context: { clientName: "local" },
