@@ -11,8 +11,38 @@ body {
     margin: 0;
     padding: 0;
     background-color: #FAF7F5;
+    overflow-x: auto;
 }
 
 p {
     margin: 0;
+}
+
+.appLayout {
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1280px) {
+    .appLayout {
+        max-width: 1280px;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1279px) {
+    .appLayout {
+        width: 100%;
+        max-width: 100%;
+        min-width: 800px;
+    }
+}
+
+@media (max-width: 799px) {
+    .appLayout {
+        min-width: 800px;
+    }
 }
