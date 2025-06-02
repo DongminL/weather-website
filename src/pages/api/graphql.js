@@ -8,19 +8,23 @@ export const config = {
     },
 };
 
-let apolloServer = null;
-let apolloHandler = null;
+let apolloHandler;
 
-export default async function handler(request, response) {
-    if (!apolloServer) {
-        apolloServer = new ApolloServer({
-            typeDefs,
-            resolvers,
-        });
+async function createApolloHandler() {
+    const apolloServer = new ApolloServer({
+        typeDefs,
+        resolvers,
+    });
 
-        await apolloServer.start();
-        apolloHandler = apolloServer.createHandler({ path: "/api/graphql" });
+    await apolloServer.start();
+    return apolloServer.createHandler({ path: "/api/graphql" });
+}
+
+export default async function handler(req, res) {
+    if (!apolloHandler) {
+        apolloHandler = createApolloHandler();
     }
 
-    return apolloHandler(request, response);
+    const handler = await apolloHandler;
+    return handler(req, res);
 }
