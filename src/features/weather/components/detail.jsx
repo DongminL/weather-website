@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import FORECAST_QUERY from "../queries/forecastQuery";
+import { timestampToDate } from "@/utils/dateUtils";
+import { Cities } from "../dtos/city";
 
 export default function CityWeatherDetail({ cityName }) {
     const { loading, error, data } = useQuery(FORECAST_QUERY, {
@@ -15,20 +17,29 @@ export default function CityWeatherDetail({ cityName }) {
         return <p>에러 발생: {error.message}</p>;
     }
 
-    const forecastData = data.forecast;
+    const forecastData = groupByDate(
+        data.forecast.hourlyWeatherList, 
+        cityName
+    );
+    const fiveDays = Object.keys(forecastData)?.slice(0, 5);
 
     return (
         <>
-            {[23, 24, 25, 26, 27].map((day, index) => (
+            {fiveDays.map((date, index) => (
                 <div key={index}>
                     <details>
-                        <summary>May {day}</summary>
+                        <summary>{date}</summary>
                         <ul>
-                            {forecastData.hourlyWeatherList?.map((data, index) => (
+                            {forecastData[date]?.map((data, index) => (
                                 <li key={index}>
                                     <div>
                                         <img src={`https://openweathermap.org/img/wn/${data.weather.iconCode}@2x.png`} />
-                                        <span>{data.utcTimestamp}</span>
+                                        <span>
+                                            {timestampToDate(
+                                                data.utcTimestamp, 
+                                                Cities.fromValue(cityName).timezone, 
+                                                "hh:mma")}
+                                        </span>
                                     </div>
                                     <div>
                                         <p>{data.weather.description}</p>
@@ -42,4 +53,21 @@ export default function CityWeatherDetail({ cityName }) {
             ))}
         </>
     );
+}
+
+function groupByDate(hourlyWeatherList, cityName) {
+    return hourlyWeatherList.reduce((acc, data) => {
+        const date = timestampToDate(
+            data.utcTimestamp, 
+            Cities.fromValue(cityName).timezone, 
+            "MMM DD"
+        );
+
+        if (!acc[date]) {
+            acc[date] = [];
+        }
+        acc[date].push(data);
+
+        return acc;
+    }, {})
 }
