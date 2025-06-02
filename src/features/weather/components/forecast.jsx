@@ -4,7 +4,7 @@ import FORECAST_QUERY from "../queries/forecastQuery";
 import { timestampToDate } from "@/utils/dateUtils";
 import { Cities } from "../dtos/city";
 
-export default function CityWeatherDetail({ cityName }) {
+export default function CityWeatherForecast({ cityName }) {
     const { loading, error, data } = useQuery(FORECAST_QUERY, {
         variables: { cityName },
         context: { clientName: "local" },
