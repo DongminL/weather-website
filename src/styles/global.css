@@ -1,12 +1,13 @@
 @font-face {
-    font-family: 'PretendardVariable';
-    src: url('/fonts/PretendardVariable.woff2') format('woff2');
-    font-weight: normal;
+    font-family: "PretendardVariable";
+    src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
+    font-weight: 45 920;
     font-style: normal;
+    font-display: swap;
 }
 
 body {
-    font-family: 'PretendardVariable';
+    font-family: "PretendardVariable";
     margin: 0;
     padding: 0;
     background-color: #FAF7F5;
