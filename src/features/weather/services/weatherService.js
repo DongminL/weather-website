@@ -11,7 +11,7 @@ export default class WeatherService {
         
         let currentWeather = await this.weatherProvider.getCurrentWeatherByCity(cityCoordinate);
 
-        return currentWeather;
+        return new CurrentWeatherResponse(currentWeather);
     }
 
     async getForecastByCityName(cityName) {
@@ -19,6 +19,6 @@ export default class WeatherService {
         
         let forecast = await this.weatherProvider.getForecastByCity(cityCoordinate);
 
-        return forecast;
+        return new ForecastResponse(forecast);
     }
 }
