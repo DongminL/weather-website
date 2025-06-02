@@ -9,7 +9,7 @@ export default function CityWeatherPage() {
     return (
         <>
             <header>
-                <img src="/earth.svg" />
+                <img src="/images/earth.svg" />
                 <h1>
                     Weather Information for {cityName}
                 </h1>

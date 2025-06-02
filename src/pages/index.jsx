@@ -27,7 +27,7 @@ export default function Main() {
             </nav>
 
             <figure>
-                <img src="/earth.svg"/>
+                <img src="/images/earth.svg"/>
             </figure>
         </>
     );
