@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'PretendardVariable';
+    src: url('/fonts/PretendardVariable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'PretendardVariable';
+    margin: 0;
+    padding: 0;
+    background-color: #FAF7F5;
+}

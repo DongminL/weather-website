@@ -1,3 +1,4 @@
+import '@/styles/global.css';
 import { ApolloProvider } from '@apollo/client';
 import client from '@/graphql/apolloClient';
 
