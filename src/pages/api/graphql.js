@@ -11,7 +11,7 @@ export const config = {
 let apolloServer = null;
 let apolloHandler = null;
 
-export default async function handler(req, res) {
+export default async function handler(request, response) {
     if (!apolloServer) {
         apolloServer = new ApolloServer({
             typeDefs,
@@ -19,8 +19,8 @@ export default async function handler(req, res) {
         });
 
         await apolloServer.start();
-        apolloHandler = apolloServer.createHandler({ path: "/api/weather" });
+        apolloHandler = apolloServer.createHandler({ path: "/api/graphql" });
     }
 
-    return apolloHandler(req, res);
+    return apolloHandler(request, response);
 }
