@@ -1,23 +1,8 @@
-import WeatherService from "../features/weather/services/weatherService"
-import WeatherProvider from "../features/weather/services/weatherProvider"
+import { mergeResolvers } from '@graphql-tools/merge';
+import { weatherResolver } from "@/features/weather/controller/weatherResolver";
 
-const weatherService = new WeatherService(new WeatherProvider());
+const resolvers = mergeResolvers([
+    weatherResolver
+]);
 
-export const resolvers = {
-    Query : {
-        currentWeather: async (_, { cityName }) => {
-            if (!cityName) {
-                throw new Error("cityName is required");
-            }
-
-            return await weatherService.getCurrentWeatherByCityName(cityName);
-        },
-        forecast: async (_, { cityName }) => {
-            if (!cityName) {
-                throw new Error("cityName is required");
-            }
-
-            return await weatherService.getForecastByCityName(cityName);
-        }
-    }
-}
+export default resolvers;
