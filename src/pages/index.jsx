@@ -1,6 +1,7 @@
 import styles from "@/styles/Main.module.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Main() {
     const router = useRouter();
@@ -41,7 +42,11 @@ export default function Main() {
             </nav>
 
             <figure>
-                <img src="/images/earth.svg"/>
+                <Image 
+                    src="/images/earth.svg"
+                    width={430}
+                    height={321}
+                />
             </figure>
         </main>
     );

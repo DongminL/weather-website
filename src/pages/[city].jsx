@@ -2,6 +2,7 @@ import styles from "@/styles/CityWeatherPage.module.css"
 import { useRouter } from "next/router";
 import CityWeatherForecast from "../features/weather/components/forecast";
 import CurrentCityWeather from "@/features/weather/components/current";
+import Image from "next/image";
 
 export default function CityWeatherPage() {
     const router = useRouter();
@@ -11,9 +12,11 @@ export default function CityWeatherPage() {
         <main className={styles.root}>
             <div className={styles.wrapper}>
                 <header className={styles.header}>
-                    <img 
+                    <Image 
                         src="/images/earth.svg" 
                         className={styles.earth} 
+                        width={80}
+                        height={80}
                         onClick={() => router.push("/")}
                     />
                     <h1 className={styles.title}>

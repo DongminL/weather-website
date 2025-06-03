@@ -1,8 +1,9 @@
-import styles from "./styles/CityWeatherDetail.module.css";
+import styles from "./styles/CityWeatherForecast.module.css";
 import { useQuery } from "@apollo/client";
 import FORECAST_QUERY from "../queries/forecastQuery";
 import { timestampToDate } from "@/utils/dateUtils";
 import { Cities } from "../dtos/city";
+import Image from "next/image";
 
 export default function CityWeatherForecast({ cityName }) {
     const { loading, error, data } = useQuery(FORECAST_QUERY, {
@@ -31,9 +32,11 @@ export default function CityWeatherForecast({ cityName }) {
                     <details className={styles.detailBox}>
                         <summary className={styles.summary}>
                             {date}
-                            <img
+                            <Image
                                 src="/images/toggle.svg"
                                 className={styles.toggleIcon}
+                                width={20}
+                                height={20}
                             />
                         </summary>
                         <ul className={styles.hourList}>
@@ -42,9 +45,11 @@ export default function CityWeatherForecast({ cityName }) {
 
                                 <li key={index} className={styles.hourItem}>
                                     <div className={styles.leftBlock}>
-                                        <img 
+                                        <Image 
                                             src={`https://openweathermap.org/img/wn/${data.weather.iconCode}@2x.png`} 
                                             className={styles.weatherIcon}
+                                            width={60}
+                                            height={60}
                                         />
                                         <span className={styles.time}>
                                             {timestampToDate(

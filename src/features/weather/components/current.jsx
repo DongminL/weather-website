@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import CURRENT_WEATHER_QUERY from "../queries/currentWeatherQuery";
 import { timestampToDate } from "@/utils/dateUtils";
 import { Cities } from "../dtos/city";
+import Image from "next/image";
 
 export default function CurrentCityWeather({ cityName }) {
     const { loading, error, data } = useQuery(CURRENT_WEATHER_QUERY, {
@@ -28,9 +29,11 @@ export default function CurrentCityWeather({ cityName }) {
     return (
         <section className={styles.weatherBox}>
                 <div className={styles.leftBlock}>
-                    <img 
+                    <Image
                         src={`https://openweathermap.org/img/wn/${weatherData.weather.iconCode}@2x.png`} 
                         className={styles.weatherIcon}
+                        width={80}
+                        height={80}
                     />
                     <div>
                         <p className={styles.date}>
