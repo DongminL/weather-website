@@ -7,6 +7,9 @@ git clone "https://github.com/DongminL/weather-website.git"
 
 ## 2. 프로젝트 루트 경로에 `.env.local` 파일 생성
 
+![image](https://github.com/user-attachments/assets/009461dd-8b55-4f3c-a80a-b5da609a8536)
+
+
 ## 3. `.env.local` 파일 안에 아래와 같이 작성
 
 ```env
@@ -36,8 +39,14 @@ $ npm run start
 
 ## 메인 페이지
 
+![image](https://github.com/user-attachments/assets/79d79bf1-3d99-4c1e-a7c3-8ec547ab23d2)
+
 ## 도시별 날씨 페이지
 
 ### 토글이 닫혀 있을 때
 
+![image](https://github.com/user-attachments/assets/fa5ff7c0-6e05-4a6a-bb93-69d73917543f)
+
 ### 토글 열려 있을 때
+
+![image](https://github.com/user-attachments/assets/048b2d5e-cbaa-42b1-96f7-32c1b184ac51)
