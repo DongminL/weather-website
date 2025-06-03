@@ -1,8 +1,8 @@
 import styles from "./styles/CurrentCityWeather.module.css";
 import { useQuery } from "@apollo/client";
-import CURRENT_WEATHER_QUERY from "../queries/currentWeatherQuery";
+import CURRENT_WEATHER_QUERY from "./queries/currentWeatherQuery";
 import { timestampToDate } from "@/utils/dateUtils";
-import { Cities } from "../dtos/city";
+import { Cities } from "@/features/weather/dtos/city";
 import Image from "next/image";
 
 export default function CurrentCityWeather({ cityName }) {

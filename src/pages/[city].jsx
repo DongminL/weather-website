@@ -1,7 +1,7 @@
 import styles from "@/styles/CityWeatherPage.module.css"
 import { useRouter } from "next/router";
-import CityWeatherForecast from "../features/weather/components/forecast";
-import CurrentCityWeather from "@/features/weather/components/current";
+import CityWeatherForecast from "@/features/weather/components/forecast/forecast";
+import CurrentCityWeather from "@/features/weather/components/currentWeather/current";
 import Image from "next/image";
 import Head from "next/head";
 

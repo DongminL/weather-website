@@ -1,8 +1,8 @@
 import styles from "./styles/CityWeatherForecast.module.css";
 import { useQuery } from "@apollo/client";
-import FORECAST_QUERY from "../queries/forecastQuery";
+import FORECAST_QUERY from "./queries/forecastQuery";
 import { timestampToDate } from "@/utils/dateUtils";
-import { Cities } from "../dtos/city";
+import { Cities } from "@/features/weather/dtos/city";
 import Image from "next/image";
 
 export default function CityWeatherForecast({ cityName }) {
