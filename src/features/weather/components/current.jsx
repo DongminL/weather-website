@@ -31,6 +31,7 @@ export default function CurrentCityWeather({ cityName }) {
                 <div className={styles.leftBlock}>
                     <Image
                         src={`https://openweathermap.org/img/wn/${weatherData.weather.iconCode}@2x.png`} 
+                        alt="Weather State Icon"
                         className={styles.weatherIcon}
                         width={80}
                         height={80}

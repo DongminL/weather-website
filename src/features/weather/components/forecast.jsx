@@ -34,6 +34,7 @@ export default function CityWeatherForecast({ cityName }) {
                             {date}
                             <Image
                                 src="/images/toggle.svg"
+                                alt="Weather State Icon"
                                 className={styles.toggleIcon}
                                 width={20}
                                 height={20}
